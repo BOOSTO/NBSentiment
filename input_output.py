@@ -6,6 +6,8 @@ def preprocess(train_raw, test_raw):
     vocab     = get_vocab(train, test)
     train     = process(train, vocab)
     test      = process(test, vocab)
+
+    write_data(vocab, train, test)
     return vocab, train, test
 
 def sanitize(data):
@@ -57,3 +59,13 @@ def process(data, vocab):
         output.append(arr)
 
     return output
+
+def write_data(vocab, train, test):
+    # TODO finish this shiz
+
+    print("TODO lmao")
+
+def print_guesses(vocab, data, predictions):
+    # TODO finish this shiz
+
+    print("guess")
