@@ -1,5 +1,3 @@
-import numpy as np
-
 def preprocess(train_raw, test_raw):
     train     = sanitize(train_raw)
     test      = sanitize(test_raw)
