@@ -19,12 +19,12 @@ def main():
         except:
             print("please enter a valid integer!")
     if(a == 1):
-        test_path = training_path;
-    vocab, training, test = input_output.preprocess(training_path, test_path);
-    guesses = naive_bayes.naive_bayes(vocab, training, test);
-    input_output.print_guesses(vocab, test, guesses);
-    accuracy = naive_bayes.accuracy(test, guesses) * 100;
-    print("We had an accuracy of " + str(accuracy) + " percent.");
+        test_path = training_path
+    vocab, training, test = input_output.preprocess(training_path, test_path)
+    guesses = naive_bayes.naive_bayes(vocab, training, test)
+    input_output.print_guesses(vocab, test, guesses)
+    accuracy = naive_bayes.accuracy(test, guesses) * 100
+    print("We had an accuracy of " + str(accuracy) + " percent.")
 
 if __name__ == "__main__":
     main()

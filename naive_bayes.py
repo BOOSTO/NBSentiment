@@ -18,10 +18,10 @@ def naive_bayes(vocab, training, test):
     n = 0;
     for i in range(size_training):
         if training[i][-1] == 1:
-            n = n + 1;
+            n = n + 1
     for i in range(size_test):
-        sum_cl = math.log(n / size_training);
-        sum_not_cl = math.log(1 - n/size_training);
+        sum_cl = math.log(n / size_training)
+        sum_not_cl = math.log(1 - n/size_training)
         for j in range(x):
             #print(str(i) + " " + str(j))
             y = 0 + 2 * test[i][j]
@@ -33,7 +33,7 @@ def naive_bayes(vocab, training, test):
                 not_denominator = 2
                 for k in range(size_training):
                     if training[k][-1] == 0:
-                        not_denominator = not_denominator + 1;
+                        not_denominator = not_denominator + 1
                         if training[k][j] == test[i][j]:
                             not_numerator = not_numerator + 1
                     else:
