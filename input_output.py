@@ -50,11 +50,13 @@ def process(data, vocab):
         clss = line[-2]
         line = line[0:-2]
         arr = []
+        sentence = line.split()
         for word in vocab:
-            if word in line:
-                arr.append(1)
-            else:
-                arr.append(0)
+            in_sentence = False
+            for check in sentence:
+                if word == check:
+                    in_sentence = True
+            arr.append(1 if in_sentence else 0)
         arr.append(0 if clss == '0' else 1)
         output.append(arr)
 
