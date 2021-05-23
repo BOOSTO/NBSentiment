@@ -3,7 +3,7 @@ import math
 def naive_bayes(vocab, training, test):
     x = len(vocab) - 1;
     mem = [];
-    for i in x:
+    for i in range(x):
         mem.append([-1.0,-1.0,-1.0,-1.0])
     #mem[word][4]
     #0 = {word = F, CL = F}
@@ -13,19 +13,19 @@ def naive_bayes(vocab, training, test):
     #test[statement][word]
     #test[sentence][word]
     guesses = [];
-    size_test = len(test)/(x + 1);
+    size_test = int(len(test)/(x + 1));
     size_training = len(training)/(x + 1)
-    for i in size_test:
+    for i in range(size_test):
         sum_cl = 0.0;
         sum_not_cl = 0.0;
-        for j in x:
+        for j in range(x):
             y = 0 + 2 * test[i][j];
             if mem[j][y] < 0:
                 numerator = 1;
                 denominator = 2;
                 not_numerator = 1;
                 not_denominator = 2;
-                for k in size_training:
+                for k in range(size_training):
                     if training[k][x + 1] == 0:
                         not_denominator = not_denominator + 1;
                         if training[k][j] == test[i][j]:
@@ -48,7 +48,7 @@ def accuracy(vocab, test, guesses):
     numerator = 0;
     x = len(vocab);
     denominator = len(test)/x;
-    for i in denominator:
+    for i in range(denominator):
         if test[x-1][i] == guesses[i]:
             numerator = numerator + 1;
     return numerator / denominator;

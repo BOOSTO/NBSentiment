@@ -13,14 +13,14 @@ def main():
         i = input("Enter your choice here: ")
         try:
             a = int(i)
-            if a != 1 && a != 2:
+            if a != 1 and a != 2:
                 a = 7 / 0
             c = True
         except:
             print("please enter a valid integer!")
 
     test_path = training_path;
-    vocab, training, test = input_output.preprocessing(training_path, test_path);
+    vocab, training, test = input_output.preprocess(training_path, test_path);
     guesses = naive_bayes.naive_bayes(vocab, training, test);
     input_output.print_guesses(vocab, test, guesses);
     accuracy = naive_bayes.accuracy(test, guesses) * 100;
