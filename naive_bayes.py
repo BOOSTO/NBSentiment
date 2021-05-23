@@ -4,7 +4,7 @@ def naive_bayes(vocab, training, test):
     x = len(vocab) - 1;
     mem = [];
     for i in range(x):
-        mem.append([-1.0,-1.0,-1.0,-1.0])
+        mem.append([0.0,0.0,0.0,0.0])
     #mem[word][4]
     #0 = {word = F, CL = F}
     #1 = {w = F, CL = T}
@@ -13,14 +13,16 @@ def naive_bayes(vocab, training, test):
     #test[statement][word]
     #test[sentence][word]
     guesses = [];
-    size_test = int(len(test)/(x + 1));
-    size_training = len(training)/(x + 1)
+    size_test = len(test);
+    size_training = len(training)
     for i in range(size_test):
         sum_cl = 0.0;
         sum_not_cl = 0.0;
         for j in range(x):
+            #print(str(i) + " " + str(j));
             y = 0 + 2 * test[i][j];
-            if mem[j][y] < 0:
+
+            if mem[j][y] >= 0.0:
                 numerator = 1;
                 denominator = 2;
                 not_numerator = 1;
@@ -36,6 +38,7 @@ def naive_bayes(vocab, training, test):
                             numerator = numerator + 1;
                 mem[j][y] = math.log(not_numerator/not_denominator);
                 mem[j][y + 1] = math.log(numerator/denominator);
+
             sum_not_cl += mem[j][y];
             sum_cl += mem[j][y + 1];
         if sum_cl > sum_not_cl:
@@ -44,11 +47,10 @@ def naive_bayes(vocab, training, test):
             guesses.append(0);
     return guesses;
 
-def accuracy(vocab, test, guesses):
+def accuracy(test, guesses):
     numerator = 0;
-    x = len(vocab);
-    denominator = len(test)/x;
+    denominator = len(test);
     for i in range(denominator):
-        if test[x-1][i] == guesses[i]:
+        if test[i][-1] == guesses[i]:
             numerator = numerator + 1;
     return numerator / denominator;
