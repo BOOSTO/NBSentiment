@@ -19,6 +19,7 @@ def sanitize(data):
                 line = line.replace(char, "")
         line = line.lower()
         data_clean.append(line)
+    f.close()
 
     return data_clean
     
@@ -39,6 +40,7 @@ def get_vocab(train, test):
             if not word in d:
                 d[word] = True
                 vocab.append(word)
+    vocab.sort()
 
     return vocab
 
@@ -59,11 +61,47 @@ def process(data, vocab):
     return output
 
 def write_data(vocab, train, test):
-    # TODO finish this shiz
+    # write train
+    f = open("./preprocessed_train.txt", 'w')
 
-    print("TODO lmao")
+    # print header
+    for i in range(len(vocab)):
+        f.write(vocab[i])
+        f.write(", ")
+    f.write("classlabel\n")
 
-def print_guesses(vocab, data, predictions):
-    # TODO finish this shiz
+    # print data
+    for sentence in train:
+        for i in range(len(sentence)):
+            f.write(str(sentence[i]))
+            if i != len(sentence) - 1:
+                f.write(", ")
+            else:
+                f.write("\n")
+    f.close()
 
-    print("guess")
+    # write train
+    f = open("./preprocessed_test.txt", 'w')
+
+    # print header
+    for i in range(len(vocab)):
+        f.write(vocab[i])
+        f.write(", ")
+    f.write("classlabel\n")
+
+    # print data
+    for sentence in test:
+        for i in range(len(sentence)):
+            f.write(str(sentence[i]))
+            if i != len(sentence) - 1:
+                f.write(", ")
+            else:
+                f.write("\n")
+    f.close()
+
+def write_results(train, test, accuracy):
+    f = open("results.txt", 'w')
+    f.write("training data:    " + train + "\n")
+    f.write("testing data:     " + test + "\n")
+    f.write("accuracy:         " + str(accuracy) + "\n")
+    f.close()

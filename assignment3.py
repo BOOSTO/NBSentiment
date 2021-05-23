@@ -22,9 +22,9 @@ def main():
         test_path = training_path
     vocab, training, test = input_output.preprocess(training_path, test_path)
     guesses = naive_bayes.naive_bayes(vocab, training, test)
-    input_output.print_guesses(vocab, test, guesses)
-    accuracy = naive_bayes.accuracy(test, guesses) * 100
-    print("We had an accuracy of " + str(accuracy) + " percent.")
+    accuracy = naive_bayes.accuracy(test, guesses) * 100.0
+    input_output.write_results(training_path, test_path, accuracy)
+    print("Classification complete. printed results to results.txt")
 
 if __name__ == "__main__":
     main()
