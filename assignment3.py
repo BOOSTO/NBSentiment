@@ -18,14 +18,11 @@ def main():
             c = True
         except:
             print("please enter a valid integer!")
-
-    test_path = training_path;
+    if(a == 1):
+        test_path = training_path;
     vocab, training, test = input_output.preprocess(training_path, test_path);
-    print("pre processing done");
     guesses = naive_bayes.naive_bayes(vocab, training, test);
-    print("pre processing done");
     input_output.print_guesses(vocab, test, guesses);
-    print("pre processing done");
     accuracy = naive_bayes.accuracy(test, guesses) * 100;
     print("We had an accuracy of " + str(accuracy) + " percent.");
 
